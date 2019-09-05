@@ -1,6 +1,6 @@
 # SoftLabelCCRF
 
-This repository contains implementation of *Phrase Grounding by Soft-Label Chain Conditional Random Field* in [EMNLP-IJCNLP 2019]().
+This repository contains implementation of [*Phrase Grounding by Soft-Label Chain Conditional Random Field*](https://arxiv.org/abs/1909.00301) in EMNLP-IJCNLP 2019.
 
 ## Setup
 
