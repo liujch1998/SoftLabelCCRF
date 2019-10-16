@@ -77,6 +77,11 @@ Other flags can be found in the script
 
 If you find this repo useful, please consider citing the following work
 ```
-
+@article{liu2019slccrf,
+  title={Phrase Grounding by Soft-Label Chain Conditional Random Field},
+  author={Jiacheng Liu and Julia Hockenmaier},
+  journal={arXiv preprint arXiv:1909.00301},
+  year={2019}
+}
 ```
 
