@@ -8,6 +8,8 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
+sys.path.insert(0, os.path.dirname(__file__))
+
 from model import Model
 from utils.data import load_tokens
 from utils.vision import iou, clip_bbox_to_image, deparameterize_bbox_error
@@ -82,7 +84,8 @@ def eval (args, model, tokens, split):
                 else:
                     mention.bbox_pred = instance.regions[r].bbox
         stat_result.insert(instance)
-        instance.visualize_prediction(args.output_dir, split)
+        if args.visualize:
+            instance.visualize_prediction(args.output_dir, split)
     logger.info('loss_eval = %.4f' % stat_loss.loss_avg)
     stat_result.print(logger)
 

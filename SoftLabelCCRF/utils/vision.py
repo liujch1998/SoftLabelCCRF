@@ -6,7 +6,7 @@ def collect_region_spatial_feats (bbox, image_size):
     '''
     > bbox [xmin, ymin, xmax, ymax] float
     > image_size (width, height, depth)
-    < region_bbox_feats (d_region_spatial=5)
+    < region_spatial_feats (d_region_spatial=5)
     '''
 
     (width, height, _) = image_size
@@ -16,8 +16,8 @@ def collect_region_spatial_feats (bbox, image_size):
     r = xmax / width
     d = ymax / height
     a = (r - l) * (d - u)
-    region_bbox_feats = torch.tensor([[l, u, r, d, a]])
-    return region_bbox_feats
+    region_spatial_feats = torch.tensor([l, u, r, d, a])
+    return region_spatial_feats
 
 def iou (bbox1, bbox2):
     '''

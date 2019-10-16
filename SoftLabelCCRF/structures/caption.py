@@ -4,8 +4,8 @@ from structures.mention import Mention
 
 class Caption:
 
-    def __init__ (self, index, ann):
-        self.index = index
+    def __init__ (self, ix, ann):
+        self.ix = ix
 
         # process annotated caption
         self.ann = ann.lower()
@@ -25,7 +25,7 @@ class Caption:
             end_pos = min(end_pos, len(self.tok))  # enforce validity of end_pos
             end_pos = max(end_pos, 1)  # enforce validity of end_pos
             start_pos = min(start_pos, end_pos - 1)  # enforce validity of start_pos
-            pos = (self.index, start_pos, end_pos)
-            mention = Mention(id, cat, mention_raw, pos)
+            pos = (start_pos, end_pos)
+            mention = Mention(id, cat, pos)
             self.mentions.append(mention)
 

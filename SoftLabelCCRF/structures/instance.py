@@ -3,6 +3,7 @@ import xml.etree.ElementTree as ET
 
 import torch
 import cv2
+import numpy as np
 
 from structures.caption import Caption
 from structures.region import Region
@@ -21,18 +22,19 @@ class Instance:
         self.load_captions()
         self.load_annotations()
 
+        self.image_ = None  # (d_image) 'features of the entire image'
         self.regions = []  # [Region] 'candidate regions from region proposal'
-        self.image_ = None  # (1, d_image) 'features of the entire image'
-#        bboxes, regions_visual_feats, objectnesses, self.image_ = vision_model(cv2.imread(self.image_path))
-        self.regions = [Region(bbox, torch.cat((region_visual_feats, collect_region_spatial_feats(bbox, self.image_size)), dim=1)) for bbox, region_visual_feats in zip(bboxes, regions_visual_feats)]
+        ix_max_region = np.argmax([collect_region_spatial_feats(bbox, self.image_size)[-1] for bbox in bboxes])
+        self.image_ = regions_visual_feats[ix_max_region]
+        self.regions = [Region(bbox, torch.cat((region_visual_feats, collect_region_spatial_feats(bbox, self.image_size)), dim=0)) for bbox, region_visual_feats in zip(bboxes, regions_visual_feats)]
 
     def load_captions (self):
         # load annotated captions from file
         with open(self.caption_path, 'r') as f:
             lines = f.readlines()
             captions_ann = [line.strip() for line in lines]
-            for index, ann in enumerate(captions_ann):
-                caption = Caption(index, ann)
+            for ix, ann in enumerate(captions_ann):
+                caption = Caption(ix, ann)
                 self.captions.append(caption)
 
     def load_annotations (self):
@@ -71,10 +73,11 @@ class Instance:
         for caption in self.captions:
             image = cv2.imread(self.image_path)
             for mention in caption.mentions:
+                (start_pos, end_pos) = mention.pos
                 color = (0,255,0,0) if iou(mention.bbox, mention.bbox_pred) >= 0.5 else (0,0,255,0)
                 [xmin, ymin, xmax, ymax] = mention.bbox_pred
                 xmin, ymin, xmax, ymax = int(round(xmin)), int(round(ymin)), int(round(xmax)), int(round(ymax))
                 image = cv2.rectangle(image, (xmin, ymin), (xmax, ymax), color, 1)
-                cv2.putText(image, mention.raw, (xmin, ymin), cv2.FONT_HERSHEY_SIMPLEX, .5, (255, 255, 255), 1)
-            cv2.imwrite(os.path.join(output_dir, 'visualize', split, '%s %s.jpg' % (self.id, caption.raw[:200])), image)
+                cv2.putText(image, ' '.join(caption.tok[start_pos:end_pos]), (xmin, ymin), cv2.FONT_HERSHEY_SIMPLEX, .5, (255, 255, 255), 1)
+            cv2.imwrite(os.path.join(output_dir, 'visualize', split, '%s %s.jpg' % (self.id, ' '.join(caption.tok)[:200])), image)
 

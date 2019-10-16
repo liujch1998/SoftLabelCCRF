@@ -60,9 +60,9 @@ def collect_feats (args, tokens=None, token=None):
         for region in instance.regions:
             region__.append(region.region_)
         while len(region__) < args.max_n_regions:
-            region__.append(torch.zeros((1, args.d_region)))
+            region__.append(torch.zeros((args.d_region,)))
         image__.append(instance.image_)
-        region___.append(torch.cat(tuple(region__), dim=0).unsqueeze(0))
+        region___.append(torch.stack(region__))
         n_regions.append(len(instance.regions))
 
         _aff___ = []
@@ -92,7 +92,8 @@ def collect_feats (args, tokens=None, token=None):
     tokenid___ = batch_to_ids(caption_).to(args.device)
     span___ = torch.tensor(span___, device=args.device)
     cat___ = torch.tensor(cat___, device=args.device)
-    region___ = torch.cat(tuple(region___), dim=0).to(args.device)
+    image__ = torch.stack(image__).to(args.device)
+    region___ = torch.stack(region___).to(args.device)
     _aff____ = torch.tensor(_aff____, device=args.device)
     _reg____ = torch.tensor(_reg____, device=args.device)
     X = (tokenid___, span___, cat___, image__, region___, n_mentions, n_regions, _aff____, _reg____)
@@ -109,7 +110,7 @@ def collect_span_feats (mention=None):
 
     if mention is None:
         return [-1,-1]
-    (caption_ix, start_pos, end_pos) = mention.pos
+    (start_pos, end_pos) = mention.pos
     span = [start_pos, end_pos]
     return span
 

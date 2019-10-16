@@ -1,4 +1,4 @@
-# Usage: python3.5 src/cache/cache.py [gpu_id_range] [n_train] [n_dev] [n_test]
+# Usage: python3.6 src/cache/cache.py [gpu_id_range] [n_train] [n_dev] [n_test]
 
 import os, sys
 import progressbar
@@ -30,7 +30,7 @@ for i in range(n_gpu):
     gpu_id = gpu_min + i
     if tokenss[i] == []:
         continue
-    subprocess = Popen(['python', 'src/cache/worker.py', str(gpu_id)] + tokenss[i], stdout=PIPE, stderr=PIPE)
+    subprocess = Popen(['python3.6', 'SoftLabelCCRF/cache/worker.py', str(gpu_id)] + tokenss[i], stdout=PIPE, stderr=PIPE)
     subprocesses.append(subprocess)
 pbar = progressbar.ProgressBar(widgets=[
 	progressbar.Percentage(), ' ',

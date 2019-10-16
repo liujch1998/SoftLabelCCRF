@@ -20,6 +20,8 @@ for token in tokens:
 import os, sys
 import pickle
 
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+
 from structures.instance import Instance
 
 gpu_id = sys.argv[1]
@@ -39,15 +41,15 @@ FIELDNAMES = ['image_id', 'image_w','image_h','num_boxes', 'boxes', 'features']
 import torch
 
 ix2feats = {}
-with open('feats/feats.tsv.%s' % gpu_id, "r+b") as f:
+with open('feats/feats.tsv.%s' % gpu_id, "r") as f:
     reader = csv.DictReader(f, delimiter='\t', fieldnames=FIELDNAMES)
     for item in reader:
         ix = item['image_id']
         num_boxes = int(item['num_boxes'])
         feats = {}
-        feats['bboxes'] = np.frombuffer(base64.decodestring(item['boxes']), dtype=np.float32).reshape((num_boxes, -1)).tolist()
-        rvf = np.frombuffer(base64.decodestring(item['features']), dtype=np.float32).reshape((num_boxes, -1)).tolist()
-        feats['regions_visual_feats'] = [torch.tensor([feat]) for feat in rvf]
+        feats['bboxes'] = np.frombuffer(base64.b64decode(item['boxes']), dtype=np.float32).reshape((num_boxes, -1)).tolist()
+        rvf = np.frombuffer(base64.b64decode(item['features']), dtype=np.float32).reshape((num_boxes, -1)).tolist()
+        feats['regions_visual_feats'] = [torch.tensor(feat) for feat in rvf]
         ix2feats[ix] = feats
 
 for token in ix2feats:
