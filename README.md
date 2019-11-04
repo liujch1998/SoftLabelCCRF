@@ -77,11 +77,18 @@ Other flags can be found in the script
 
 If you find this repo useful, please consider citing the following work
 ```
-@article{liu2019slccrf,
-  title={Phrase Grounding by Soft-Label Chain Conditional Random Field},
-  author={Jiacheng Liu and Julia Hockenmaier},
-  journal={arXiv preprint arXiv:1909.00301},
-  year={2019}
+@inproceedings{liu-hockenmaier-2019-phrase,
+    title = "Phrase Grounding by Soft-Label Chain Conditional Random Field",
+    author = "Liu, Jiacheng  and
+      Hockenmaier, Julia",
+    booktitle = "Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)",
+    month = nov,
+    year = "2019",
+    address = "Hong Kong, China",
+    publisher = "Association for Computational Linguistics",
+    url = "https://www.aclweb.org/anthology/D19-1515",
+    pages = "5115--5125",
+    abstract = "The phrase grounding task aims to ground each entity mention in a given caption of an image to a corresponding region in that image. Although there are clear dependencies between how different mentions of the same caption should be grounded, previous structured prediction methods that aim to capture such dependencies need to resort to approximate inference or non-differentiable losses. In this paper, we formulate phrase grounding as a sequence labeling task where we treat candidate regions as potential labels, and use neural chain Conditional Random Fields (CRFs) to model dependencies among regions for adjacent mentions. In contrast to standard sequence labeling tasks, the phrase grounding task is defined such that there may be multiple correct candidate regions. To address this multiplicity of gold labels, we define so-called Soft-Label Chain CRFs, and present an algorithm that enables convenient end-to-end training. Our method establishes a new state-of-the-art on phrase grounding on the Flickr30k Entities dataset. Analysis shows that our model benefits both from the entity dependencies captured by the CRF and from the soft-label training regime. Our code is available at {\textbackslash}url{github.com/liujch1998/SoftLabelCCRF}",
 }
 ```
 
