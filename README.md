@@ -64,14 +64,14 @@ Other flags can be found in the script
 
 | Handle | Description | Flags | Size |
 | ------ | ----------- | ----- | ---- |
-| [HL](https://soft-label-ccrf.s3.us-east-2.amazonaws.com/hot-ind-none.030000.pth) | Hard-Label Model | N/A | 477.6 MB |
-| [HL-CCRF](https://soft-label-ccrf.s3.us-east-2.amazonaws.com/hot-crf-none.025000.pth) | Hard-Label Chain CRF Model | `--crf --decode viterbi` | 478.1 MB |
-| [SL](https://soft-label-ccrf.s3.us-east-2.amazonaws.com/kld-ind-none.025000.pth) | Soft-Label Model | `--kld` | 477.6 MB |
-| [SL-CCRF](https://soft-label-ccrf.s3.us-east-2.amazonaws.com/kld-crf-none.025000.pth) | Soft-Label Chain CRF Model | `--kld --crf --decode viterbi` | 478.1 MB |
-| [SL-CCRF-M](https://soft-label-ccrf.s3.us-east-2.amazonaws.com/kld-crf-m.050000.pth) | SL-CCRF, M | `--kld --crf --decode viterbi --tran_context m` | 478.2 MB |
-| [SL-CCRF-MLR](https://soft-label-ccrf.s3.us-east-2.amazonaws.com/kld-crf-mlr.050000.pth) | SL-CCRF, MLR | `--kld --crf --decode viterbi --tran_context mlr` | 478.6 MB |
-| [SL-CCRF-MLRG](https://soft-label-ccrf.s3.us-east-2.amazonaws.com/kld-crf-mlrg.050000.pth) | SL-CCRF, MLRG | `--kld --crf --decode viterbi --tran_context mlrg` | 478.8 MB |
-| [SL-CCRF-M-NBR](https://soft-label-ccrf.s3.us-east-2.amazonaws.com/kld-crf-m-nbr.025000.pth) | SL-CCRF, M, no box regression | `--kld --crf --decode viterbi --tran_context m --no_box_regression --gamma 0.0` | 478.2 MB |
+| [HL](https://drive.google.com/file/d/1P_xs5AYRIGNOK9IiU13HxKdGeex--Kg2/view?usp=sharing) | Hard-Label Model | N/A | 477.6 MB |
+| [HL-CCRF](https://drive.google.com/file/d/1Je16eiTcns6firDoewZE46ewlMdiHXxo/view?usp=sharing) | Hard-Label Chain CRF Model | `--crf --decode viterbi` | 478.1 MB |
+| [SL](https://drive.google.com/file/d/1IETz6vwDbN6jZCpDYXEiUfUwmyONz1Wh/view?usp=sharing) | Soft-Label Model | `--kld` | 477.6 MB |
+| [SL-CCRF](https://drive.google.com/file/d/1GKdsMhR3W_-oPEtUKKWsPvIIVqmUEj2f/view?usp=sharing) | Soft-Label Chain CRF Model | `--kld --crf --decode viterbi` | 478.1 MB |
+| [SL-CCRF-M](https://drive.google.com/file/d/1hUvP391mwIv276ji3fwy7n4DuseEUqgu/view?usp=sharing) | SL-CCRF, M | `--kld --crf --decode viterbi --tran_context m` | 478.2 MB |
+| [SL-CCRF-MLR](https://drive.google.com/file/d/17gKhHOzhcJ_zaQlI1dd6U78N23ndzihM/view?usp=sharing) | SL-CCRF, MLR | `--kld --crf --decode viterbi --tran_context mlr` | 478.6 MB |
+| [SL-CCRF-MLRG](https://drive.google.com/file/d/1PdMg_SrrCzcjkIxYgkgyrE81BrzBzc3a/view?usp=sharing) | SL-CCRF, MLRG | `--kld --crf --decode viterbi --tran_context mlrg` | 478.8 MB |
+| [SL-CCRF-M-NBR](https://drive.google.com/file/d/1BTEMugUhuhMSWBkifbtsettH-EtPhQY5/view?usp=sharing) | SL-CCRF, M, no box regression | `--kld --crf --decode viterbi --tran_context m --no_box_regression --gamma 0.0` | 478.2 MB |
 
 ## Citation
 
